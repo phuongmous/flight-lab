@@ -5,7 +5,7 @@ const destinationSchema = new Schema({
     airport: {
         type: String,
         enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
-        require: true
+        required: true
     },
     arrival: {
         type: Date,
@@ -40,7 +40,11 @@ const flightSchema = new Schema({
           return oneYearFromNow;
         }
     },
-    destinations: [destinationSchema]
+    destinations: [destinationSchema],
+    tickets: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Ticket',
+    }]
 }, {
     timestamps: true,
 });
